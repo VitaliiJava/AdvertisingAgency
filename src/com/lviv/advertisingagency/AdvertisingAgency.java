@@ -27,13 +27,24 @@ public class AdvertisingAgency {
         list.add(new AdvertisingPlatform(OS.SOLARIS, Browser.FIREFOX, "AdvertisingPlatformSolarisFirefox",
                 checkAllScreensForContainInfo("AdvertisingPlatformSolarisFirefox"),
                 checkAllScreensFromPlatform("AdvertisingPlatformSolarisFirefox")));
-        list.add(new AdvertisingPlatform(OS.SUN_OS, Browser.INTERNET_EXPLORER, "AdvertisingPlatformSunInternetExplorer", checkAllScreensForContainInfo("AdvertisingPlatformSunInternetExplorer"), checkAllScreensFromPlatform("AdvertisingPlatformSunInternetExplorer")));
-        list.add(new AdvertisingPlatform(OS.WINDOWS7, Browser.GOOGLE_CHROME, "AdvertisingPlatformWindows7GoogleChrome", checkAllScreensForContainInfo("AdvertisingPlatformWindows7GoogleChrome"), checkAllScreensFromPlatform("AdvertisingPlatformWindows7GoogleChrome")));
-        serializatorIn(list.get(0), "AdvertisingPlatformLinuxYandex", "InfoAdvertisingPlatformLinuxYandex");
-        serializatorIn(list.get(1), "AdvertisingPlatformMacOpera", "InfoAdvertisingPlatformMacOpera");
-        serializatorIn(list.get(2), "AdvertisingPlatformSolarisFirefox", "InfoAdvertisingPlatformSolarisFirefox");
-        serializatorIn(list.get(3), "AdvertisingPlatformSunInternetExplorer", "InfoAdvertisingPlatformSunInternetExplorer");
-        serializatorIn(list.get(4), "AdvertisingPlatformWindows7GoogleChrome", "InfoAdvertisingPlatformWindows7GoogleChrome");
+        list.add(new AdvertisingPlatform(OS.SUN_OS, Browser.INTERNET_EXPLORER,
+                "AdvertisingPlatformSunInternetExplorer",
+                checkAllScreensForContainInfo("AdvertisingPlatformSunInternetExplorer"),
+                checkAllScreensFromPlatform("AdvertisingPlatformSunInternetExplorer")));
+        list.add(new AdvertisingPlatform(OS.WINDOWS7, Browser.GOOGLE_CHROME,
+                "AdvertisingPlatformWindows7GoogleChrome",
+                checkAllScreensForContainInfo("AdvertisingPlatformWindows7GoogleChrome"),
+                checkAllScreensFromPlatform("AdvertisingPlatformWindows7GoogleChrome")));
+        serializatorIn(list.get(0), "AdvertisingPlatformLinuxYandex",
+                "InfoAdvertisingPlatformLinuxYandex");
+        serializatorIn(list.get(1), "AdvertisingPlatformMacOpera",
+                "InfoAdvertisingPlatformMacOpera");
+        serializatorIn(list.get(2), "AdvertisingPlatformSolarisFirefox",
+                "InfoAdvertisingPlatformSolarisFirefox");
+        serializatorIn(list.get(3), "AdvertisingPlatformSunInternetExplorer",
+                "InfoAdvertisingPlatformSunInternetExplorer");
+        serializatorIn(list.get(4), "AdvertisingPlatformWindows7GoogleChrome",
+                "InfoAdvertisingPlatformWindows7GoogleChrome");
 
     }
 
@@ -94,7 +105,8 @@ public class AdvertisingAgency {
                 try (DirectoryStream<Path> files = Files.newDirectoryStream(path)) {
                     for (Path file : files) {
                         if (Files.isRegularFile(file) || Files.isSymbolicLink(file)) {
-                            if (file.getFileName().toString().startsWith("Screen") && isEmptyFile(String.valueOf(file))) {
+                            if (file.getFileName().toString().startsWith("Screen") &&
+                                    isEmptyFile(String.valueOf(file))) {
                                 count++;
                             }
                         }
@@ -147,14 +159,19 @@ public class AdvertisingAgency {
      * The method allows to create the menu.
      */
     public void menu() {
-        System.out.println("1) Post reclame on the screen.\n2) Change reclame on screen.\n3) Create new platform.\n4) Create new reclame screen.\n5) Delete platform with all screens.\n6) Delete all screens from the platform.\n7) Add screen to the platform.\n8) Show screen from the platform.\n9) Show all screens from the platform.\n10) Show info about platform.\n11) Count the screens from platform.\n12) Show all from Platform.\n14) Exit.");
+        System.out.println("1) Post reclame on the screen.\n2) Change reclame on screen.\n3) Create new platform." +
+                "\n4) Create new reclame screen.\n5) Delete platform with all screens.\n6) Delete all screens from the" +
+                " platform.\n7) Add screen to the platform.\n8) Show screen from the platform.\n9) Show all screens " +
+                "from the platform.\n10) Show info about platform.\n11) Count the screens from platform." +
+                "\n12) Show all from Platform.\n14) Exit.");
     }
 
     /**
      * The method allows to serializate the object.
      */
     public void serializatorIn(Object object, String nameOfPlatform, String nameOfFile) {
-        try (FileOutputStream outputStream = new FileOutputStream("./AdvertisingAgency/" + nameOfPlatform + "/" + nameOfFile + ".ser");
+        try (FileOutputStream outputStream = new FileOutputStream("./AdvertisingAgency/" + nameOfPlatform + "/" +
+                nameOfFile + ".ser");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
             objectOutputStream.writeObject(object);
         } catch (Exception e) {
@@ -168,7 +185,8 @@ public class AdvertisingAgency {
     public void serializatorOut() {
         String nameOfPlatform = getInfo("Input name of Platform");
         String nameOfFile = getInfo("Input name of file");
-        try (FileInputStream inputStream = new FileInputStream("./AdvertisingAgency/" + nameOfPlatform + "/" + nameOfFile + ".ser");
+        try (FileInputStream inputStream = new FileInputStream("./AdvertisingAgency/" + nameOfPlatform + "/" +
+                nameOfFile + ".ser");
              ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
             AdvertisingPlatform advertisingPlatform = (AdvertisingPlatform) objectInputStream.readObject();
             AdvertisingPlatform adv = (AdvertisingPlatform) advertisingPlatform;
@@ -193,7 +211,9 @@ public class AdvertisingAgency {
      * The method allows to create the menu.
      */
     public void menuOnScreen() {
-        System.out.println("\tDefault Platforms:\n->I AdvertisingPlatformLinuxYandex\n->II AdvertisingPlatformMacOpera\n->III AdvertisingPlatformSolarisFirefox\n->IV AdvertisingPlatformSunInternetExplorer\n ->V AdvertisingPlatformWindows7GoogleChrome\n->VI Choose another platform\n-> 0 - Exit.");
+        System.out.println("\tDefault Platforms:\n->I AdvertisingPlatformLinuxYandex\n->II AdvertisingPlatformMacOpera" +
+                "\n->III AdvertisingPlatformSolarisFirefox\n->IV AdvertisingPlatformSunInternetExplorer" +
+                "\n ->V AdvertisingPlatformWindows7GoogleChrome\n->VI Choose another platform\n-> 0 - Exit.");
     }
 
     /**
@@ -230,7 +250,8 @@ public class AdvertisingAgency {
                     break;
                 }
                 case 6: {
-                    String nameOfPlatform = getInfo("Input name of platform like(AdvertisingPlatformWindows7GoogleChrome).");
+                    String nameOfPlatform = getInfo("Input name of platform like(AdvertisingPlatformWindows7" +
+                            "GoogleChrome).");
                     String nameOfScreen = getInfo("Input name of screen like(screen.txt).");
                     Path path = Paths.get("./AdvertisingAgency/" + nameOfPlatform + "/" + nameOfScreen);
                     postAdvertisingToScreen(String.valueOf(path));
@@ -320,7 +341,8 @@ public class AdvertisingAgency {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list.add(new AdvertisingPlatform(OS.valueOf(os), Browser.valueOf(browser), nameOfPlatform, checkAllScreensForContainInfo(nameOfPlatform), checkAllScreensFromPlatform(nameOfPlatform)));
+        list.add(new AdvertisingPlatform(OS.valueOf(os), Browser.valueOf(browser), nameOfPlatform,
+                checkAllScreensForContainInfo(nameOfPlatform), checkAllScreensFromPlatform(nameOfPlatform)));
         serializatorIn(list.get(list.size() - 1), nameOfPlatform, nameOfInfo);
     }
 
