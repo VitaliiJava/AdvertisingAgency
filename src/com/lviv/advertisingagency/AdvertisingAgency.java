@@ -86,7 +86,7 @@ public class AdvertisingAgency {
      * The method allows to check screen for empty.
      */
     private int checkAllScreensFromPlatform(String nameOfPlatform) {
-//        String nameOfPlatform = getInfo("Input name of Platform");
+//      String nameOfPlatform = getInfo("Input name of Platform");
         Path path = Paths.get("./AdvertisingAgency/" + nameOfPlatform);
         int count = 0;
         if (Files.isDirectory(path)) {
